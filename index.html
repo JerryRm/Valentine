@@ -1,55 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Will You Be My Valentine?</title>
-    <style>
-        body {
-            background-color: #ffccd5;
-            font-family: 'Arial', sans-serif;
-            text-align: center;
-            padding: 50px;
-            color: #800020;
-        }
-        h1 {
-            font-size: 3em;
-            margin-bottom: 20px;
-        }
-        button {
-            background-color: #ff4b5c;
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            font-size: 1.5em;
-            cursor: pointer;
-            border-radius: 10px;
-        }
-        button:hover {
-            background-color: #ff1c3e;
-        }
-        .hidden {
-            display: none;
-        }
-    </style>
-</head>
-<body>
-    <h1>Will You Be My Valentine? ❤️</h1>
-    <button onclick="showMessage()">Yes 💕</button>
-    <button onclick="showMessage('no')">No 😢</button>
+<h1>Will You Be My Valentine? ❤️</h1>
+<button onclick="showMessage()">Yes 💕</button>
+<button onclick="showMessage('no')">No 😢</button>
 
-    <h2 class="hidden" id="response"></h2>
+<h2 class="hidden" id="response"></h2>
+<div id="gif-container"></div> <!-- This will display the GIFs -->
 
-    <script>
-        function showMessage(answer) {
-            const response = document.getElementById('response');
-            if (answer === 'no') {
-                response.textContent = "Aww... I'll still love you anyway. 💔";
-            } else {
-                response.textContent = "Yay! I knew you'd say yes! 💖";
-            }
-            response.classList.remove('hidden');
+<script>
+    // Store GIF paths inside the "gifs" folder
+    const gifs = ['gifs/gif1.gif', 'gifs/gif2.gif', 'gifs/gif3.gif']; 
+
+    function showMessage(answer) {
+        const response = document.getElementById('response');
+        const gifContainer = document.getElementById('gif-container');
+
+        if (answer === 'no') {
+            response.textContent = "Aww... I'll still love you anyway. 💔";
+
+            // Show a random GIF
+            const randomGif = gifs[Math.floor(Math.random() * gifs.length)];
+            gifContainer.innerHTML = `<img src="${randomGif}" style="width:200px; height:auto; animation: pop 0.5s ease;">`;
+        } else {
+            response.textContent = "Yay! I knew you'd say yes! 💖";
+            gifContainer.innerHTML = ""; // Clear GIFs if she clicks Yes
         }
-    </script>
-</body>
-</html>
+        response.classList.remove('hidden');
+    }
+</script>
+
+<style>
+    @keyframes pop {
+        0% { transform: scale(0); }
+        100% { transform: scale(1); }
+    }
+</style>
