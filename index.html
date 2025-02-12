@@ -7,10 +7,18 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
+
+    <!-- Welcome Screen -->
+    <div class="welcome-screen" id="welcome-screen">
+        <p>Hola mi amor... tal vez sea un poco tarde para preguntarte esto, ya que estamos en San Valentín y eres mi novia. No debería preguntarte esto, pero aun así me gustaría formalmente que seas mi San Valentín, amor... así que...</p>
+        <button class="continue-btn" onclick="startValentine()">Continuar 💖</button>
+    </div>
+
+    <!-- Main Content (Hidden Initially) -->
+    <div class="container hidden" id="main-content">
         <h1>Will You Be My Valentine? ❤️</h1>
         <div class="buttons">
-            <button class="yes-btn" onclick="showMessage()">Yes 💕</button>
+            <button class="yes-btn" onclick="showMessage()">S 💕</button>
             <button class="no-btn" onclick="showMessage('no')">No 😢</button>
         </div>
         <h2 class="hidden" id="response"></h2>
