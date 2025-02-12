@@ -1,35 +1,22 @@
-<h1>Will You Be My Valentine? ❤️</h1>
-<button onclick="showMessage()">Yes 💕</button>
-<button onclick="showMessage('no')">No 😢</button>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine? 💖</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Will You Be My Valentine? ❤️</h1>
+        <div class="buttons">
+            <button class="yes-btn" onclick="showMessage()">Yes 💕</button>
+            <button class="no-btn" onclick="showMessage('no')">No 😢</button>
+        </div>
+        <h2 class="hidden" id="response"></h2>
+        <div id="gif-container"></div> <!-- GIF appears here -->
+    </div>
 
-<h2 class="hidden" id="response"></h2>
-<div id="gif-container"></div> <!-- This will display the GIFs -->
-
-<script>
-    // Store GIF paths inside the "gifs" folder
-    const gifs = ['gifs/gif1.gif', 'gifs/gif2.gif', 'gifs/gif3.gif']; 
-
-    function showMessage(answer) {
-        const response = document.getElementById('response');
-        const gifContainer = document.getElementById('gif-container');
-
-        if (answer === 'no') {
-            response.textContent = "Aww... I'll still love you anyway. 💔";
-
-            // Show a random GIF
-            const randomGif = gifs[Math.floor(Math.random() * gifs.length)];
-            gifContainer.innerHTML = `<img src="${randomGif}" style="width:200px; height:auto; animation: pop 0.5s ease;">`;
-        } else {
-            response.textContent = "Yay! I knew you'd say yes! 💖";
-            gifContainer.innerHTML = ""; // Clear GIFs if she clicks Yes
-        }
-        response.classList.remove('hidden');
-    }
-</script>
-
-<style>
-    @keyframes pop {
-        0% { transform: scale(0); }
-        100% { transform: scale(1); }
-    }
-</style>
+    <script src="script.js"></script>
+</body>
+</html>
