@@ -25,3 +25,16 @@ function showMessage(answer) {
         gifContainer.innerHTML = ""; // Clear GIFs if she clicks Yes
     }
 }
+function startValentine() {
+    let welcomeScreen = document.getElementById('welcome-screen');
+    let mainContent = document.getElementById('main-content');
+
+    // Add fade-out effect
+    welcomeScreen.style.opacity = "0";  
+    welcomeScreen.style.transition = "opacity 0.8s ease-out";
+
+    setTimeout(() => {
+        welcomeScreen.style.display = "none"; // Hide the intro
+        mainContent.classList.remove('hidden'); // Show main content
+    }, 800); // Wait for fade effect to complete
+}
