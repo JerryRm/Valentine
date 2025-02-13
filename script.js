@@ -21,9 +21,23 @@ function startValentine() {
   }, 800);
 }
 
+// Fade out gif6 (the main intro GIF) when a choice is made
+function fadeOutMainGif() {
+  let mainGif = document.querySelector('.main-gif');
+  if (mainGif && mainGif.style.opacity !== "0") {
+    mainGif.style.transition = "opacity 0.5s ease-out";
+    mainGif.style.opacity = "0";
+    setTimeout(() => {
+      mainGif.style.display = "none";
+    }, 500);
+  }
+}
+
 // Called when the Yes button is clicked
 function yesClick() {
-  // Clear any existing GIF immediately
+  // Fade out the main intro gif
+  fadeOutMainGif();
+  // Clear any existing GIF in the gif container
   document.getElementById('gif-container').innerHTML = "";
 
   if (state.yes === 0) {
@@ -54,7 +68,9 @@ function yesClick() {
 
 // Called when the No button is clicked
 function noClick() {
-  // Clear any existing GIF immediately
+  // Fade out the main intro gif
+  fadeOutMainGif();
+  // Clear any existing GIF in the gif container
   document.getElementById('gif-container').innerHTML = "";
 
   if (state.no < 4) {
@@ -109,20 +125,4 @@ function setGif(filename) {
 
 // Helper function: set multiple GIFs side by side
 function setGifs(filenames) {
-  let container = document.getElementById('gif-container');
-  container.innerHTML = "";
-  filenames.forEach(file => {
-    container.innerHTML += `<img src="gifs/${file}" alt="gif" style="width:200px; margin:5px; animation: pop 0.5s ease;">`;
-  });
-}
-
-// Replace the yes/no buttons with a "Continuar" button in the final yes state
-function removeButtonsForFinalYes() {
-  let buttonsDiv = document.querySelector('.buttons');
-  buttonsDiv.innerHTML = `<button id="continue-btn" onclick="continueFinal()">Continuar</button>`;
-}
-
-// Final "Continuar" placeholder
-function continueFinal() {
-  alert("Final continue action placeholder.");
-}
+  let containe
