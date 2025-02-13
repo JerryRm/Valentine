@@ -1,6 +1,6 @@
-// Global state variables for the yes and no sequences
+// Global state variables for the yes/no sequences
 let state = {
-  yes: 0,    // 0: initial; 1: after first yes; 2: after second yes; 3: final yes state
+  yes: 0,    // 0: initial; 1: after first yes; 2: after second yes; 3: final yes
   no: 0,     // tracks no sequence from 0 to 4
   noExtra: 0 // extra no clicks after state.no reaches 4
 };
@@ -15,28 +15,16 @@ function startValentine() {
   welcomeScreen.style.transition = "opacity 0.8s ease-out";
 
   setTimeout(() => {
+    // Hide the welcome screen
     welcomeScreen.style.display = "none";
+    // Reveal the main content
     mainContent.classList.remove('hidden');
-    // gif6 is already displayed as part of the main content
+    // Now gif6 is visible
   }, 800);
-}
-
-// Fade out gif6 (the main intro GIF) when a choice is made
-function fadeOutMainGif() {
-  let mainGif = document.querySelector('.main-gif');
-  if (mainGif && mainGif.style.opacity !== "0") {
-    mainGif.style.transition = "opacity 0.5s ease-out";
-    mainGif.style.opacity = "0";
-    setTimeout(() => {
-      mainGif.style.display = "none";
-    }, 500);
-  }
 }
 
 // Called when the Yes button is clicked
 function yesClick() {
-  // Fade out the main intro gif
-  fadeOutMainGif();
   // Clear any existing GIF in the gif container
   document.getElementById('gif-container').innerHTML = "";
 
@@ -62,14 +50,12 @@ function yesClick() {
     setGifs(["gif14.gif", "gif7.gif"]);
     state.yes = 3;
   } else if (state.yes === 3) {
-    // Already in final state – waiting for final continue action.
+    // Already in final state – waiting for final "Continuar"
   }
 }
 
 // Called when the No button is clicked
 function noClick() {
-  // Fade out the main intro gif
-  fadeOutMainGif();
   // Clear any existing GIF in the gif container
   document.getElementById('gif-container').innerHTML = "";
 
@@ -99,7 +85,7 @@ function noClick() {
       document.getElementById('no-button').innerText = "No";
       setGif("gif20.gif");
       state.no = 4;
-      state.noExtra = 0;
+      state.noExtra = 0; // reset extra no clicks
     }
   } else if (state.no === 4) {
     // Extra no clicks beyond the fourth
@@ -117,12 +103,28 @@ function noClick() {
   }
 }
 
-// Helper function: set a single GIF in the gif container
+// Helper: set a single GIF in the container
 function setGif(filename) {
   let container = document.getElementById('gif-container');
   container.innerHTML = `<img src="gifs/${filename}" alt="gif" style="width:200px; animation: pop 0.5s ease;">`;
 }
 
-// Helper function: set multiple GIFs side by side
+// Helper: set multiple GIFs side by side
 function setGifs(filenames) {
-  let containe
+  let container = document.getElementById('gif-container');
+  container.innerHTML = "";
+  filenames.forEach(file => {
+    container.innerHTML += `<img src="gifs/${file}" alt="gif" style="width:200px; margin:5px; animation: pop 0.5s ease;">`;
+  });
+}
+
+// Replace the yes/no buttons with a "Continuar" button in the final yes state
+function removeButtonsForFinalYes() {
+  let buttonsDiv = document.querySelector('.buttons');
+  buttonsDiv.innerHTML = `<button id="continue-btn" onclick="continueFinal()">Continuar</button>`;
+}
+
+// Final "Continuar" placeholder
+function continueFinal() {
+  alert("Final continue action placeholder.");
+}
