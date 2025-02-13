@@ -1,99 +1,126 @@
+/* General Styles */
 body {
-    font-family: 'Arial', sans-serif;
-    text-align: center;
-    background-color: #ffe4e1; /* Soft pink */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  background-color: #ffe4e1; /* Soft pink */
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-/* Welcome Screen */
+/* Welcome Screen Styles */
 .welcome-screen {
-    background: white;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    max-width: 400px;
-    animation: fadeIn 1s ease-in-out;
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  max-width: 400px;
+  animation: fadeIn 1s ease-in-out;
 }
 
-.welcome-screen p {
-    font-size: 18px;
-    color: #333;
+.welcome-gif {
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 20px;
 }
 
 .continue-btn {
-    background-color: #ff4d6d;
-    color: white;
-    font-size: 18px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.3s;
+  background-color: #ff4d6d;
+  color: white;
+  font-size: 18px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s;
 }
 
 .continue-btn:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 
-/* Hidden Elements */
-.hidden {
-    display: none;
-}
-
-/* Main Content */
+/* Main Content Styles */
 .container {
-    background: white;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    max-width: 400px;
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  max-width: 400px;
 }
 
-h1 {
-    color: #ff4d6d;
+.main-gif {
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 20px;
+}
+
+#main-text {
+  color: #ff4d6d;
 }
 
 .buttons {
-    margin: 20px 0;
+  margin: 20px 0;
 }
 
 button {
-    font-size: 18px;
-    padding: 10px 20px;
-    margin: 5px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.3s;
+  font-size: 18px;
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s;
 }
 
-.yes-btn {
-    background-color: #ff4d6d;
-    color: white;
+#yes-button {
+  background-color: #ff4d6d;
+  color: white;
 }
 
-.no-btn {
-    background-color: #444;
-    color: white;
+#no-button {
+  background-color: #444;
+  color: white;
 }
 
 button:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 
-/* Animation */
+.hidden {
+  display: none;
+}
+
+/* GIF container styling */
+#gif-container img {
+  width: 200px;
+  height: auto;
+  margin-top: 20px;
+  animation: pop 0.5s ease;
+}
+
+/* Animations */
 @keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.9); }
-    to { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
-@keyframes fadeOut {
-    from { opacity: 1; }
-    to { opacity: 0; display: none; }
+@keyframes pop {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
