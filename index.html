@@ -1,30 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Be My Valentine? 💖</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Be My Valentine? 💖</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- Welcome Screen (shows gif10) -->
+  <div id="welcome-screen" class="welcome-screen">
+    <img src="gifs/gif10.gif" alt="Intro GIF" class="welcome-gif" />
+    <p>
+      Hola mi amor... tal vez sea un poco tarde para preguntarte esto, ya que
+      estamos en San Valentín y eres mi novia. No debería preguntarte esto, pero
+      aun así me gustaría formalmente que seas mi San Valentín, amor... así que...
+    </p>
+    <button class="continue-btn" onclick="startValentine()">Continuar 💖</button>
+  </div>
 
-    <!-- Welcome Screen -->
-    <div class="welcome-screen" id="welcome-screen">
-        <p>Hola mi amor... tal vez sea un poco tarde para preguntarte esto, ya que estamos en San Valentín y eres mi novia. No debería preguntarte esto, pero aun así me gustaría formalmente que seas mi San Valentín, amor... así que...</p>
-        <button class="continue-btn" onclick="startValentine()">Continuar 💖</button>
+  <!-- Main Content (initially hidden; shows gif6 at the top) -->
+  <div id="main-content" class="container hidden">
+    <img src="gifs/gif6.gif" alt="Main Intro GIF" class="main-gif" />
+    <h1 id="main-text">Will You Be My Valentine? ❤️</h1>
+    <div class="buttons">
+      <button id="yes-button" onclick="yesClick()">Siii mi amoooorr 💕</button>
+      <button id="no-button" onclick="noClick()">No... no se me antoja 😢</button>
     </div>
+    <h2 id="response" class="hidden"></h2>
+    <div id="gif-container"></div>
+  </div>
 
-    <!-- Main Content (Hidden Initially) -->
-    <div class="container hidden" id="main-content">
-        <h1>Will You Be My Valentine? ❤️</h1>
-        <div class="buttons">
-            <button class="yes-btn" onclick="showMessage()">Siii mi amoooor 💕</button>
-            <button class="no-btn" onclick="showMessage('no')">No.. no se me antoja 😢</button>
-        </div>
-        <h2 class="hidden" id="response"></h2>
-        <div id="gif-container"></div> <!-- GIF appears here -->
-    </div>
-
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
