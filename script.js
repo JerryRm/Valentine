@@ -23,11 +23,10 @@ function startValentine() {
 
 // Called when the Yes button is clicked
 function yesClick() {
-  // 1) Clear any existing GIF immediately
-  let container = document.getElementById('gif-container');
-  container.innerHTML = "";
+  // 1) Clear any existing GIF from the container
+  clearGif();
 
-  // 2) Proceed with yes sequence logic
+  // 2) Proceed with the yes sequence logic
   if (state.yes === 0) {
     // First Yes click
     document.getElementById('main-text').innerText = "Estas segura mi amor?";
@@ -36,12 +35,14 @@ function yesClick() {
     document.getElementById('no-button').innerText = "Mejor no";
     setGif("gif16.gif");
     state.yes = 1;
+
   } else if (state.yes === 1) {
     // Second Yes click
     document.getElementById('main-text').innerText = "De verdaita?";
     document.getElementById('yes-button').innerText = "Si mi amor, de verdaita";
     setGif("gif2.gif");
     state.yes = 2;
+
   } else if (state.yes === 2) {
     // Third Yes click
     document.getElementById('main-text').innerText = "Gracias mi amoooorrr";
@@ -49,18 +50,18 @@ function yesClick() {
     // Play gif14 and gif7 simultaneously
     setGifs(["gif14.gif", "gif7.gif"]);
     state.yes = 3;
+
   } else if (state.yes === 3) {
-    // Already in final state - do nothing or handle final "Continuar"
+    // Already in final state
   }
 }
 
 // Called when the No button is clicked
 function noClick() {
-  // 1) Clear any existing GIF immediately
-  let container = document.getElementById('gif-container');
-  container.innerHTML = "";
+  // 1) Clear any existing GIF from the container
+  clearGif();
 
-  // 2) Proceed with no sequence logic
+  // 2) Proceed with the no sequence logic
   if (state.no < 4) {
     if (state.no === 0) {
       document.getElementById('main-text').innerText = "Por favor no me hagas esto";
@@ -69,18 +70,21 @@ function noClick() {
       document.getElementById('response').innerText = "Cooooomo?";
       setGif("gif18.gif");
       state.no = 1;
+
     } else if (state.no === 1) {
       document.getElementById('main-text').innerText = "Lo estas haciendo a proposito, di que siii";
       document.getElementById('yes-button').innerText = "Esta bien mi amor";
       document.getElementById('no-button').innerText = "No quiero y ya";
       setGif("gif17.gif");
       state.no = 2;
+
     } else if (state.no === 2) {
       document.getElementById('main-text').innerText = "Anda vale";
       document.getElementById('yes-button').innerText = "Pleaseee";
       document.getElementById('no-button').innerText = "Sigo diciendo que no";
       setGif("gif19.gif");
       state.no = 3;
+
     } else if (state.no === 3) {
       document.getElementById('main-text').innerText = "Sigue diciendo que no para que tu veas";
       document.getElementById('yes-button').innerText = "Me rindo, si quiero";
@@ -89,6 +93,7 @@ function noClick() {
       state.no = 4;
       state.noExtra = 0; // Reset extra no clicks
     }
+
   } else if (state.no === 4) {
     // Extra no clicks beyond the fourth
     state.noExtra += 1;
@@ -97,6 +102,7 @@ function noClick() {
     let newScale = 1 + (state.noExtra * 0.1);
     yesBtn.style.transform = `scale(${newScale})`;
     setGif("gif12.gif");
+
     // After 5 extra No clicks, remove the No button
     if (state.noExtra >= 5) {
       let noBtn = document.getElementById('no-button');
@@ -105,7 +111,13 @@ function noClick() {
   }
 }
 
-// Helper: set a single GIF
+// Helper: remove all GIFs from the container
+function clearGif() {
+  let container = document.getElementById('gif-container');
+  container.innerHTML = "";
+}
+
+// Helper: set a single GIF in the container
 function setGif(filename) {
   let container = document.getElementById('gif-container');
   container.innerHTML = `<img src="gifs/${filename}" alt="gif" style="width:200px; animation: pop 0.5s ease;">`;
