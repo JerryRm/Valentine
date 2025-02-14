@@ -1,3 +1,15 @@
+// ===== Preload Background Audio =====
+let bgAudio;
+window.addEventListener('load', () => {
+  bgAudio = document.createElement('audio');
+  bgAudio.src = "assets/audio/song.mp3";
+  bgAudio.preload = "auto";
+  bgAudio.loop = false;
+  bgAudio.controls = false;
+  bgAudio.style.display = "none";
+  document.body.appendChild(bgAudio);
+});
+
 // ===== Global State for Main Sequence =====
 let state = {
   yes: 0,    // Yes steps: 0 -> 1 -> 2 -> 3 -> 4 (final)
@@ -211,17 +223,10 @@ function startFinalSequence() {
   heartCount = 0;
   renderFinalScreen();
   
-  // Insert background audio element (using song.mp3)
-  let bgAudio = document.createElement('audio');
-  bgAudio.id = "bg-music";
-  bgAudio.src = "assets/audio/song.mp3";  // Using MP3 for background music
-  bgAudio.autoplay = true;
-  bgAudio.controls = false;
-  bgAudio.loop = false;
-  // Hide the default audio controls
-  bgAudio.style.display = "none";
-  document.body.appendChild(bgAudio);
-  bgAudio.play().catch(e => console.log("Audio play error:", e));
+  // Use the preloaded audio element to play the song
+  if (bgAudio) {
+    bgAudio.play().catch(e => console.log("Audio play error:", e));
+  }
 }
 
 function renderFinalScreen() {
@@ -229,11 +234,12 @@ function renderFinalScreen() {
   finalContainer.innerHTML = "";
   let screen = finalScreens[finalStep];
   
-  // Create text element (set text color to black for readability)
+  // Create text element with updated styling
   let textEl = document.createElement('p');
   textEl.innerText = screen.text;
   textEl.style.fontSize = "24px";
-  textEl.style.color = "#000";
+  textEl.style.color = "#2c3e50"; // Dark blue for better readability
+  textEl.style.fontFamily = "'Garamond', serif"; // New font style
   textEl.style.margin = "20px";
   finalContainer.appendChild(textEl);
   
