@@ -56,6 +56,7 @@ body {
   width: 100%;
   max-width: 300px;
   margin-bottom: 20px;
+  transition: opacity 0.5s ease-out; /* For fade-out */
 }
 
 #main-text {
