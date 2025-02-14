@@ -57,7 +57,7 @@ function yesClick() {
     document.getElementById('main-text').innerText = "De verdaita? 😏";
     document.getElementById('yes-button').innerText = "Si mi amor, de verdaita 😍";
     document.getElementById('no-button').innerText = "Mejor no 😢";
-    setGif("gif2.gif"); // Now plays gif2.gif
+    setGif("gif2.gif"); // Plays gif2.gif
     state.yes = 2;
     
   } else if (state.yes === 2) {
@@ -69,7 +69,7 @@ function yesClick() {
     
   } else if (state.yes === 3) {
     document.getElementById('main-text').innerText = "Gracias mi amoooorrr 😍";
-    removeButtonsForFinalYes(); // Replaces Yes/No with a "Continuar" button.
+    removeButtonsForFinalYes(); // Replaces Yes/No with a "Continuar ✨" button.
     setGifs(["gif14.gif", "gif7.gif"]);
     state.yes = 4;
     
@@ -217,6 +217,8 @@ function startFinalSequence() {
   bgVideo.src = "song.mp4";  // Using MP4 for background video
   bgVideo.autoplay = true;
   bgVideo.controls = false;
+  bgVideo.playsInline = true;
+  bgVideo.muted = false; // Ensure sound is enabled
   bgVideo.style.position = "fixed";
   bgVideo.style.top = "0";
   bgVideo.style.left = "0";
@@ -225,6 +227,7 @@ function startFinalSequence() {
   bgVideo.style.objectFit = "cover";
   bgVideo.style.zIndex = "-1";
   document.body.appendChild(bgVideo);
+  bgVideo.play().catch(e => console.log("Video play error:", e));
 }
 
 function renderFinalScreen() {
@@ -232,13 +235,15 @@ function renderFinalScreen() {
   finalContainer.innerHTML = "";
   let screen = finalScreens[finalStep];
   
+  // Create text element (set text color to black for readability)
   let textEl = document.createElement('p');
   textEl.innerText = screen.text;
   textEl.style.fontSize = "24px";
-  textEl.style.color = "#fff";
+  textEl.style.color = "#000"; // changed from white to black
   textEl.style.margin = "20px";
   finalContainer.appendChild(textEl);
   
+  // Create GIF image element if provided
   if (screen.gif) {
     let imgEl = document.createElement('img');
     imgEl.src = "gifs/" + screen.gif;
@@ -247,6 +252,7 @@ function renderFinalScreen() {
     finalContainer.appendChild(imgEl);
   }
   
+  // Create buttons container
   let buttonsDiv = document.createElement('div');
   buttonsDiv.style.margin = "20px";
   screen.buttons.forEach(btnObj => {
@@ -259,6 +265,7 @@ function renderFinalScreen() {
     buttonsDiv.appendChild(btn);
   });
   
+  // If this is the final screen, add the heart button.
   if (finalStep === finalScreens.length - 1) {
     let heartBtn = document.createElement('button');
     heartBtn.innerText = "❤️";
@@ -315,6 +322,7 @@ function handleHeartButton() {
     let finalContainer = document.getElementById('final-sequence');
     let p = finalContainer.getElementsByTagName('p')[0];
     p.innerText = "No fue nada facil hacer todo esto mi amor, me alegra que hayas descubierto este secreto, te cuento que fue super dificil, pero lo volveria a hacer por ti, recuerdas cuando te dije que casi todo lo que te iba a dar podria o no tener algo secreto? JA, conseguiste este, eso es si lo estas leyendo, si no pues mala suerte para mi por hacer algo que no ves. Para hacer que valga la pena te cuento un secreto: me he estado masturbando pensando en ti todos los dias desde la ultima vez que lo hicimos, me encantaron tus gemidos/orgasmos, que sabroso ❤️";
+    setFinalGif("gif13.gif"); // Replace gif15 with gif13
   } else if (heartCount === 21) {
     heartCount = 0;
     let finalContainer = document.getElementById('final-sequence');
