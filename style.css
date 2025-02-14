@@ -1,127 +1,34 @@
-/* General Styles */
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: Arial, sans-serif;
   text-align: center;
-  background-color: #ffe4e1; /* Soft pink */
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  background-color: #f8f9fa;
 }
 
-/* Welcome Screen Styles */
-.welcome-screen {
-  background: white;
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  text-align: center;
-  max-width: 400px;
-  animation: fadeIn 1s ease-in-out;
+#final-sequence p.final-text {
+  font-size: 24px;
+  color: #2c3e50;
+  font-family: 'Garamond', serif;
+  margin: 20px;
 }
 
-.welcome-gif {
-  width: 100%;
-  max-width: 300px;
-  margin-bottom: 20px;
-}
-
-.continue-btn {
-  background-color: #ff4d6d;
-  color: white;
-  font-size: 18px;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: transform 0.3s;
-}
-
-.continue-btn:hover {
-  transform: scale(1.1);
-}
-
-/* Main Content Styles */
-.container {
-  background: white;
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  text-align: center;
-  max-width: 400px;
-}
-
-.main-gif {
-  width: 100%;
-  max-width: 300px;
-  margin-bottom: 20px;
-  transition: opacity 0.5s ease-out; /* For fade-out */
-}
-
-#main-text {
-  color: #ff4d6d;
-}
-
-.buttons {
-  margin: 20px 0;
-}
-
-button {
-  font-size: 18px;
-  padding: 10px 20px;
-  margin: 5px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: transform 0.3s;
-}
-
-#yes-button {
-  background-color: #ff4d6d;
-  color: white;
-}
-
-#no-button {
-  background-color: #444;
-  color: white;
-}
-
-button:hover {
-  transform: scale(1.1);
-}
-
-.hidden {
-  display: none;
-}
-
-/* GIF container styling */
-#gif-container img {
-  width: 200px;
-  height: auto;
-  margin-top: 20px;
-  animation: pop 0.5s ease;
-}
-
-/* Animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
+/* Responsive styling for mobile */
+@media (max-width: 600px) {
+  #final-sequence p.final-text {
+    font-size: 18px;
+    line-height: 1.4;
+    margin: 10px;
   }
 }
 
-@keyframes pop {
-  0% {
-    transform: scale(0);
-    opacity: 0;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
+/* Floating heart effect */
+.floating-heart {
+  position: fixed;
+  bottom: 0;
+  font-size: 24px;
+  animation: floatUp 3s ease-in-out forwards;
+}
+
+@keyframes floatUp {
+  0% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-100vh); }
 }
