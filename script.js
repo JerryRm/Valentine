@@ -64,7 +64,7 @@ function yesClick() {
     document.getElementById('main-text').innerText = "Mira que de aqui ya no hay vuelta atras 🔒";
     document.getElementById('yes-button').innerText = "Si mi amor, sin arrepentimientos 💖";
     document.getElementById('no-button').innerText = "Me arrepiento 😔";
-    setGif("gif8.gif"); // Now plays gif8.gif
+    setGif("gif8.gif"); // Plays gif8.gif
     state.yes = 3;
     
   } else if (state.yes === 3) {
@@ -211,23 +211,17 @@ function startFinalSequence() {
   heartCount = 0;
   renderFinalScreen();
   
-  // Insert background music as a video element covering the screen
-  let bgVideo = document.createElement('video');
-  bgVideo.id = "bg-music";
-  bgVideo.src = "song.mp4";  // Using MP4 for background video
-  bgVideo.autoplay = true;
-  bgVideo.controls = false;
-  bgVideo.playsInline = true;
-  bgVideo.muted = false; // Ensure sound is enabled
-  bgVideo.style.position = "fixed";
-  bgVideo.style.top = "0";
-  bgVideo.style.left = "0";
-  bgVideo.style.width = "100%";
-  bgVideo.style.height = "100%";
-  bgVideo.style.objectFit = "cover";
-  bgVideo.style.zIndex = "-1";
-  document.body.appendChild(bgVideo);
-  bgVideo.play().catch(e => console.log("Video play error:", e));
+  // Insert background audio element (using song.mp3)
+  let bgAudio = document.createElement('audio');
+  bgAudio.id = "bg-music";
+  bgAudio.src = "assets/audio/song.mp3";  // Using MP3 for background music
+  bgAudio.autoplay = true;
+  bgAudio.controls = false;
+  bgAudio.loop = false;
+  // Hide the default audio controls
+  bgAudio.style.display = "none";
+  document.body.appendChild(bgAudio);
+  bgAudio.play().catch(e => console.log("Audio play error:", e));
 }
 
 function renderFinalScreen() {
@@ -239,7 +233,7 @@ function renderFinalScreen() {
   let textEl = document.createElement('p');
   textEl.innerText = screen.text;
   textEl.style.fontSize = "24px";
-  textEl.style.color = "#000"; // changed from white to black
+  textEl.style.color = "#000";
   textEl.style.margin = "20px";
   finalContainer.appendChild(textEl);
   
