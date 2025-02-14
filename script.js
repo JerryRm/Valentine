@@ -1,11 +1,11 @@
-// Global state variables for the yes/no sequences
+// Global state variables for the yes and no sequences
 let state = {
   yes: 0,    // 0: initial; 1: after first yes; 2: after second yes; 3: final yes
-  no: 0,     // tracks no sequence from 0 to 4
-  noExtra: 0 // extra no clicks after state.no reaches 4
+  no: 0,     // 0 to 4
+  noExtra: 0 // extra no clicks after state.no=4
 };
 
-// Called when the "Continuar" button on the welcome screen is clicked
+// Called when "Continuar" on the welcome screen is clicked
 function startValentine() {
   let welcomeScreen = document.getElementById('welcome-screen');
   let mainContent = document.getElementById('main-content');
@@ -19,12 +19,24 @@ function startValentine() {
     welcomeScreen.style.display = "none";
     // Reveal the main content
     mainContent.classList.remove('hidden');
-    // Now gif6 is visible
   }, 800);
+}
+
+// Fade out gif6 (the main intro GIF) when a choice is made
+function fadeOutMainGif() {
+  let mainGif = document.querySelector('.main-gif');
+  if (mainGif && mainGif.style.display !== "none") {
+    mainGif.style.opacity = "0";
+    setTimeout(() => {
+      mainGif.style.display = "none";
+    }, 500);
+  }
 }
 
 // Called when the Yes button is clicked
 function yesClick() {
+  // Fade out gif6 if it's still visible
+  fadeOutMainGif();
   // Clear any existing GIF in the gif container
   document.getElementById('gif-container').innerHTML = "";
 
@@ -56,6 +68,8 @@ function yesClick() {
 
 // Called when the No button is clicked
 function noClick() {
+  // Fade out gif6 if it's still visible
+  fadeOutMainGif();
   // Clear any existing GIF in the gif container
   document.getElementById('gif-container').innerHTML = "";
 
@@ -95,6 +109,7 @@ function noClick() {
     let newScale = 1 + (state.noExtra * 0.1);
     yesBtn.style.transform = `scale(${newScale})`;
     setGif("gif12.gif");
+
     // After 5 extra No clicks, remove the No button entirely
     if (state.noExtra >= 5) {
       let noBtn = document.getElementById('no-button');
